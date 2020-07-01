@@ -1,0 +1,35 @@
+<template>
+    <template if:true={loadedData}>
+        <lightning-layout>
+            <lightning-layout-item padding="around-small" flexibility="auto" size="4">
+                <lightning-input type="text" name="Filter" label="Filter Text" variant="label-hidden"
+                    value={filterValue} onchange={handleFilter}></lightning-input>
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small" flexibility="auto" size="4">
+                <lightning-button label="Filter Data" onclick={handleFilterData}></lightning-button>
+            </lightning-layout-item>
+        </lightning-layout>
+        <template if:true={accounts}>
+            <lightning-layout multiple-rows="true">
+                <template for:each={accounts} for:item="acc">
+                    <lightning-layout-item key={acc.Id} padding="around-small" flexibility="auto" size="4">
+                        <div id={acc.Id} class="slds-box slds-theme_default">
+                            <lightning-tile>
+                                <!-- <p class="slds-truncate" title={acc.Name} style="color:#0070d2;">{acc.Name}</p> -->
+                                <p class="slds-truncate" title={acc.Name} style="color:black;">{acc.Name}</p>
+                            </lightning-tile>
+                        </div>
+                    </lightning-layout-item>
+                </template>
+            </lightning-layout>
+        </template>
+        <template if:true={error}>
+            <p class="slds-truncate" title="Error" style="color:red;">{error}</p>
+        </template>
+    </template>
+    <template if:false={loadedData}>
+        <div class="backgroundInverse">
+            <lightning-spinner alternative-text="Loading" variant="brand"></lightning-spinner>
+        </div>
+    </template>
+</template>

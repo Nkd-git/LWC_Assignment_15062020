@@ -1,0 +1,24 @@
+<template>
+    
+    <lightning-layout multiple-rows="true">
+        
+        <lightning-layout-item padding="around-small" flexibility="auto">
+            <lightning-card>
+                <div class="slds-p-around_large">
+                <lightning-input type="text" name="name" label="Name" value={accountNm} required onchange={handleName}>
+                </lightning-input>
+                <lightning-input type="number" name="records" required label="Records #:" value={recordNumber}
+                    onchange={handleNumber}></lightning-input><br />
+                <lightning-button class="slds-align_absolute-center" label="Search" onclick={handleSearch}></lightning-button>
+                </div>
+            </lightning-card>
+        </lightning-layout-item>
+        <template if:true={fetchAccounts}>
+        <lightning-layout-item padding="around-small" flexibility="auto">
+            <lightning-card>
+                <c-lwc-poc-child15062020 account-name={accountNm} recd-num={recordNumber}></c-lwc-poc-child15062020>
+            </lightning-card>
+        </lightning-layout-item>
+    </template>
+    </lightning-layout>
+</template>
